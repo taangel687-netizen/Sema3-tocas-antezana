@@ -39,3 +39,110 @@
     ></script>
   </body>
 </html>
+<!-- Navbar Responsivo Híbrido -->
+<header class="sticky-top">
+  <nav
+    class="navbar navbar-expand-lg bg-slate-900/90 backdrop-blur-md shadow-2xl border-b border-slate-800 py-3"
+  >
+    <div class="container">
+      <!-- Logo / Marca -->
+      <a
+        class="navbar-brand text-2xl font-bold text-violet-500 tracking-wider flex items-center gap-2"
+        href="#"
+      >
+        ⚡ SoundFest
+      </a>
+
+      <!-- Botón Hamburguesa Móvil (JS NATIVO de Bootstrap) -->
+      <button
+        class="navbar-toggler border-0 text-slate-100 focus:outline-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarFest"
+        aria-controls="navbarFest"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon filter invert"></span>
+      </button>
+
+      <!-- Navegación -->
+      <div class="collapse navbar-collapse" id="navbarFest">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 font-medium ms-lg-4">
+          <li class="nav-item">
+            <a
+              class="nav-link active text-violet-400"
+              aria-current="page"
+              href="#inicio"
+              >Inicio</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-slate-300 hover:text-violet-400"
+              href="#artistas"
+              >Artistas</a
+            >
+          </li>
+          <!-- Dropdown Bootstrap -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle text-slate-300"
+              href="#"
+              id="genDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Géneros
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-dark bg-slate-800 shadow-xl border-slate-700"
+              aria-labelledby="genDropdown"
+            >
+              <li>
+                <a class="dropdown-item hover:bg-violet-600" href="#"
+                  >Rock & Indie</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item hover:bg-violet-600" href="#"
+                  >Electrónica & EDM</a
+                >
+              </li>
+              <li><hr class="dropdown-divider border-slate-700" /></li>
+              <li>
+                <a class="dropdown-item hover:bg-violet-600" href="#"
+                  >Urbano & Trap</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-slate-300 hover:text-violet-400"
+              href="#tickets"
+              >Comprar Tickets</a
+            >
+          </li>
+        </ul>
+
+        <!-- Badges de Estado / Acciones -->
+        <div class="d-flex align-items-center gap-3">
+          <button
+            type="button"
+            class="btn btn-outline-light position-relative rounded-full px-4 border-violet-500 text-violet-300"
+          >
+            🎟️ Mis Entradas
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-violet-600"
+            >
+              2
+              <span class="visually-hidden">Entradas en reserva</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
