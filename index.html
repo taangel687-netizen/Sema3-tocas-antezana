@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SoundFest 2026 - Conciertos, Entradas y Agenda</title>
+    <title>SoundFest 2026 - Festival de Música, Entradas y Agenda</title>
 
-    <!-- Meta Etiquetas SEO (Paso 1) -->
+    <!-- 1. Meta Etiquetas SEO Avanzadas -->
     <meta
       name="description"
-      content="SoundFest 2026: Compra tus tickets en preventa, consulta la agenda de conciertos y conoce a los artistas principales del año."
+      content="SoundFest 2026: Compra tus entradas en preventa, consulta el lineup de artistas en vivo y agenda cultural en Lima, Perú."
     />
     <meta
       name="keywords"
@@ -17,7 +17,15 @@
     <meta name="author" content="Tocas Anglas & Antezana Villegas" />
     <meta name="robots" content="index, follow" />
 
-    <!-- CDN Oficial de Bootstrap 5.3.3 (CSS) -->
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:title" content="SoundFest 2026 - El Festival del Año" />
+    <meta
+      property="og:description"
+      content="Mas de 40 artistas en vivo, sonido inmersivo y zonas gastronómicas."
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- 2. CDN Bootstrap 5.3.3 (CSS) -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -25,57 +33,50 @@
       crossorigin="anonymous"
     />
 
-    <!-- CDN Oficial de Tailwind CSS (Play CDN para desarrollo) -->
+    <!-- 3. CDN Tailwind CSS (Play CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Estilo de parche para evitar conflictos entre Tailwind y Bootstrap collapse -->
-    <style>
-      .collapse.show {
-        display: block !important;
-      }
-      .collapsing {
-        height: 0;
-        overflow: hidden;
-        transition: height 0.35s ease;
-      }
-    </style>
   </head>
-  <body class="bg-slate-950 text-slate-100 antialiased">
-    <!-- Paso 2: Navbar Responsivo Híbrido -->
-    <header class="sticky-top">
+  <body
+    class="bg-slate-950 text-slate-100 antialiased font-sans selection:bg-violet-500 selection:text-white"
+  >
+    <!-- HEADER & NAVBAR HÍBRIDO -->
+    <header class="sticky-top z-50">
       <nav
-        class="navbar navbar-expand-lg navbar-dark bg-slate-900/90 backdrop-blur-md shadow-lg py-3"
+        class="navbar navbar-expand-lg navbar-dark bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 shadow-lg py-3"
+        aria-label="Navegación principal"
       >
         <div class="container">
           <!-- Logo / Marca -->
           <a
-            class="navbar-brand text-2xl font-bold text-violet-500 tracking-wider flex items-center gap-2"
+            class="navbar-brand text-2xl font-black text-violet-400 tracking-wider flex items-center gap-2 hover:text-violet-300 transition-colors"
             href="#inicio"
           >
-            ⚡ SoundFest
+            <span class="text-3xl">⚡</span> SoundFest
           </a>
 
-          <!-- Botón Hamburguesa Móvil -->
+          <!-- Botón Hamburguesa Móvil (Aislado de Bootstrap JS para evitar rebote) -->
           <button
-            class="navbar-toggler border-0 focus:outline-none p-2"
+            id="mobileMenuBtn"
+            class="navbar-toggler border border-slate-700/60 focus:outline-none focus:ring-2 focus:ring-violet-500 rounded-lg p-2.5 text-slate-300"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarFest"
             aria-controls="navbarFest"
             aria-expanded="false"
-            aria-label="Navegación de palanca"
+            aria-label="Abrir menú de navegación"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <!-- Navegación -->
-          <div class="collapse navbar-collapse" id="navbarFest">
+          <!-- Menú Colapsable (Control Híbrido CSS) -->
+          <div
+            id="navbarFest"
+            class="hidden lg:flex flex-col lg:flex-row w-full lg:w-auto items-start lg:items-center justify-between gap-4 mt-4 lg:mt-0 transition-all duration-300"
+          >
             <ul
-              class="navbar-nav me-auto mb-2 mb-lg-0 font-medium ms-lg-4 gap-1"
+              class="navbar-nav me-auto mb-2 mb-lg-0 font-medium ms-lg-4 gap-1 w-full lg:w-auto"
             >
               <li class="nav-item">
                 <a
-                  class="nav-link active text-violet-400"
+                  class="nav-link active text-violet-400 font-semibold"
                   aria-current="page"
                   href="#inicio"
                   >Inicio</a
@@ -83,15 +84,16 @@
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link text-slate-300 hover:text-violet-400"
+                  class="nav-link text-slate-300 hover:text-violet-400 transition-colors"
                   href="#artistas"
                   >Artistas</a
                 >
               </li>
-              <!-- Dropdown Bootstrap -->
+
+              <!-- Dropdown Nativo Bootstrap -->
               <li class="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle text-slate-300"
+                  class="nav-link dropdown-toggle text-slate-300 hover:text-violet-400"
                   href="#"
                   id="genDropdown"
                   role="button"
@@ -101,95 +103,101 @@
                   Géneros
                 </a>
                 <ul
-                  class="dropdown-menu dropdown-menu-dark bg-slate-800 shadow-xl border-slate-700"
+                  class="dropdown-menu dropdown-menu-dark bg-slate-800 shadow-2xl border-slate-700 rounded-xl mt-2"
                   aria-labelledby="genDropdown"
                 >
                   <li>
                     <a
-                      class="dropdown-item hover:bg-violet-600 text-slate-200"
-                      href="#"
+                      class="dropdown-item hover:bg-violet-600/50 text-slate-200 py-2"
+                      href="#artistas"
                       >Rock & Indie</a
                     >
                   </li>
                   <li>
                     <a
-                      class="dropdown-item hover:bg-violet-600 text-slate-200"
-                      href="#"
+                      class="dropdown-item hover:bg-violet-600/50 text-slate-200 py-2"
+                      href="#artistas"
                       >Electrónica & EDM</a
                     >
                   </li>
                   <li><hr class="dropdown-divider border-slate-700" /></li>
                   <li>
                     <a
-                      class="dropdown-item hover:bg-violet-600 text-slate-200"
-                      href="#"
+                      class="dropdown-item hover:bg-violet-600/50 text-slate-200 py-2"
+                      href="#artistas"
                       >Urbano & Trap</a
                     >
                   </li>
                 </ul>
               </li>
+
               <li class="nav-item">
                 <a
-                  class="nav-link text-slate-300 hover:text-violet-400"
+                  class="nav-link text-slate-300 hover:text-violet-400 transition-colors"
                   href="#tickets"
                   >Comprar Tickets</a
                 >
               </li>
             </ul>
 
-            <!-- Badges de Estado / Acciones -->
-            <div class="d-flex align-items-center gap-3 my-2 my-lg-0">
-              <button
-                type="button"
-                class="btn btn-outline-light position-relative rounded-full px-4 border-violet-500 text-violet-300 hover:bg-violet-900/30"
+            <!-- Badge de Notificación -->
+            <div
+              class="d-flex align-items-center gap-3 my-2 my-lg-0 w-full lg:w-auto pt-3 lg:pt-0 border-t border-slate-800 lg:border-none"
+            >
+              <a
+                href="#tickets"
+                class="btn btn-outline-light position-relative rounded-full px-4 py-2 border-violet-500/50 text-violet-300 hover:bg-violet-900/40 hover:border-violet-400 text-sm font-medium w-full lg:w-auto text-center"
               >
                 🎟️ Mis Entradas
                 <span
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-violet-600"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-violet-600 shadow-md"
                 >
                   2
                   <span class="visually-hidden">Entradas en reserva</span>
                 </span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
       </nav>
     </header>
 
-    <!-- Paso 3: Hero Section -->
+    <!-- HERO SECTION -->
     <section
       id="inicio"
-      class="bg-gradient-to-r from-slate-950 via-slate-900 to-violet-950 py-24 relative overflow-hidden"
+      class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-24 relative overflow-hidden"
     >
       <div class="container relative z-10">
         <div class="row align-items-center min-vh-50">
           <div class="col-lg-8 mx-auto text-center max-w-3xl">
             <span
-              class="inline-block px-4 py-1.5 mb-4 text-xs font-semibold text-violet-300 bg-violet-900/50 rounded-full border border-violet-500/30"
+              class="inline-block px-4 py-1.5 mb-4 text-xs font-semibold text-violet-300 bg-violet-950/80 rounded-full border border-violet-500/40 shadow-inner"
             >
               15 - 17 de Noviembre | Lima, Perú
             </span>
             <h1
-              class="display-3 font-bold text-white mb-4 text-balance tracking-tight"
+              class="display-3 font-extrabold text-white mb-4 text-balance tracking-tight"
             >
               El festival de música más vibrante con
-              <span class="text-violet-500">SoundFest</span>
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-500"
+                >SoundFest</span
+              >
             </h1>
-            <p class="lead text-slate-300 mb-8 text-balance">
+            <p class="lead text-slate-300 mb-8 text-balance font-normal">
               Vive 3 días ininterrumpidos con más de 40 artistas en vivo,
               tecnología de sonido inmersivo y zonas gastronómicas exclusivas.
             </p>
-            <div class="d-flex justify-content-center gap-3">
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
               <a
                 href="#tickets"
-                class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg bg-violet-600 border-0 hover:bg-violet-700 transition-transform hover:scale-105"
+                class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg bg-violet-600 border-0 hover:bg-violet-700 transition-all transform hover:-translate-y-0.5 font-semibold"
               >
                 Comprar Tickets
               </a>
               <a
                 href="#artistas"
-                class="btn btn-outline-light btn-lg rounded-pill px-4 border-slate-700 text-slate-300 hover:bg-slate-800"
+                class="btn btn-outline-light btn-lg rounded-pill px-4 border-slate-700 text-slate-300 hover:bg-slate-800/80 hover:text-white font-semibold"
               >
                 Ver Lineup
               </a>
@@ -199,208 +207,232 @@
       </div>
     </section>
 
-    <!-- Paso 4: Grid de Tarjetas (Sistema de 12 Columnas) -->
-    <section id="artistas" class="py-20 bg-slate-900">
+    <!-- GRID DE TARJETAS (12 Columnas + Estados Hover/Focus) -->
+    <section
+      id="artistas"
+      class="py-20 bg-slate-900/60 border-y border-slate-800/60"
+    >
       <div class="container">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-white">
+          <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
             Artistas Principales
           </h2>
-          <p class="text-slate-400 mt-2">
-            Los mejores headliners reunidos en un solo lugar
+          <p class="text-slate-400 mt-2 max-w-lg mx-auto">
+            Los mejores headliners internacionales reunidos en un solo
+            escenario.
           </p>
         </div>
 
         <div class="row g-4">
           <!-- Tarjeta 1 -->
-          <div class="col-md-4">
-            <div
-              class="card h-100 bg-slate-800 border-slate-700 shadow-2xl rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300"
+          <div class="col-12 col-md-6 col-lg-4">
+            <article
+              class="card h-100 bg-slate-800/80 border-slate-700/80 shadow-xl rounded-2xl overflow-hidden hover:border-violet-500/50 transition-all duration-300 hover:-translate-y-1"
             >
               <img
                 src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80"
-                class="card-img-top object-cover h-56"
-                alt="Escenario principal con banda Electric Neon"
+                class="card-img-top object-cover h-56 w-full"
+                alt="Escenario principal con la banda Electric Neon"
+                loading="lazy"
               />
               <div class="card-body d-flex flex-column p-6">
                 <span
-                  class="text-xs font-semibold text-violet-400 uppercase tracking-wider mb-1"
+                  class="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-1"
                   >Escenario Principal</span
                 >
-                <h3 class="card-title text-xl font-bold text-white">
+                <h3 class="card-title text-xl font-bold text-white mb-2">
                   Electric Neon
                 </h3>
-                <p class="card-text text-slate-400 text-sm mt-2 flex-grow-1">
-                  Banda referente de Synthwave y Rock Electrónico en vivo con
-                  show de luces LED.
+                <p
+                  class="card-text text-slate-400 text-sm flex-grow-1 leading-relaxed"
+                >
+                  Banda referente de Synthwave y Rock Electrónico en vivo con un
+                  espectacular show de luces LED.
                 </p>
                 <div
-                  class="d-flex justify-content-between align-items-center mt-4 pt-3 border-t border-slate-700"
+                  class="d-flex justify-content-between align-items-center mt-4 pt-3 border-t border-slate-700/60"
                 >
-                  <span class="text-sm font-semibold text-slate-300"
+                  <span
+                    class="text-xs font-medium text-slate-300 bg-slate-900/80 px-2.5 py-1 rounded-md border border-slate-700"
                     >Viernes 15 - 22:00 hrs</span
                   >
                   <a
                     href="#tickets"
-                    class="btn btn-sm btn-primary bg-violet-600 border-0 rounded-pill px-3"
+                    class="btn btn-sm btn-primary bg-violet-600 border-0 rounded-full px-4 hover:bg-violet-700 font-medium"
                   >
                     Reservar 🎟️
                   </a>
                 </div>
               </div>
-            </div>
+            </article>
           </div>
 
           <!-- Tarjeta 2 -->
-          <div class="col-md-4">
-            <div
-              class="card h-100 bg-slate-800 border-slate-700 shadow-2xl rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300"
+          <div class="col-12 col-md-6 col-lg-4">
+            <article
+              class="card h-100 bg-slate-800/80 border-slate-700/80 shadow-xl rounded-2xl overflow-hidden hover:border-violet-500/50 transition-all duration-300 hover:-translate-y-1"
             >
               <img
                 src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80"
-                class="card-img-top object-cover h-56"
-                alt="DJ Pulse en escenario Beat"
+                class="card-img-top object-cover h-56 w-full"
+                alt="DJ Pulse tocando en el escenario Beat"
+                loading="lazy"
               />
               <div class="card-body d-flex flex-column p-6">
                 <span
-                  class="text-xs font-semibold text-violet-400 uppercase tracking-wider mb-1"
+                  class="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-1"
                   >Escenario Beat</span
                 >
-                <h3 class="card-title text-xl font-bold text-white">
+                <h3 class="card-title text-xl font-bold text-white mb-2">
                   DJ Pulse & Friends
                 </h3>
-                <p class="card-text text-slate-400 text-sm mt-2 flex-grow-1">
-                  Sesión inmersiva de House y Techno con los mayores exponentes
-                  europeos.
+                <p
+                  class="card-text text-slate-400 text-sm flex-grow-1 leading-relaxed"
+                >
+                  Sesión inmersiva de House y Techno de alta intensidad con los
+                  mayores exponentes del género.
                 </p>
                 <div
-                  class="d-flex justify-content-between align-items-center mt-4 pt-3 border-t border-slate-700"
+                  class="d-flex justify-content-between align-items-center mt-4 pt-3 border-t border-slate-700/60"
                 >
-                  <span class="text-sm font-semibold text-slate-300"
+                  <span
+                    class="text-xs font-medium text-slate-300 bg-slate-900/80 px-2.5 py-1 rounded-md border border-slate-700"
                     >Sábado 16 - 00:00 hrs</span
                   >
                   <a
                     href="#tickets"
-                    class="btn btn-sm btn-primary bg-violet-600 border-0 rounded-pill px-3"
+                    class="btn btn-sm btn-primary bg-violet-600 border-0 rounded-full px-4 hover:bg-violet-700 font-medium"
                   >
                     Reservar 🎟️
                   </a>
                 </div>
               </div>
-            </div>
+            </article>
           </div>
 
           <!-- Tarjeta 3 -->
-          <div class="col-md-4">
-            <div
-              class="card h-100 bg-slate-800 border-slate-700 shadow-2xl rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300"
+          <div class="col-12 col-md-6 col-lg-4">
+            <article
+              class="card h-100 bg-slate-800/80 border-slate-700/80 shadow-xl rounded-2xl overflow-hidden hover:border-violet-500/50 transition-all duration-300 hover:-translate-y-1"
             >
               <img
                 src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
-                class="card-img-top object-cover h-56"
-                alt="Luna Sol cantando en escenario acústico"
+                class="card-img-top object-cover h-56 w-full"
+                alt="Luna Sol en concierto acústico"
+                loading="lazy"
               />
               <div class="card-body d-flex flex-column p-6">
                 <span
-                  class="text-xs font-semibold text-violet-400 uppercase tracking-wider mb-1"
+                  class="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-1"
                   >Escenario Acústico</span
                 >
-                <h3 class="card-title text-xl font-bold text-white">
+                <h3 class="card-title text-xl font-bold text-white mb-2">
                   Luna Sol
                 </h3>
-                <p class="card-text text-slate-400 text-sm mt-2 flex-grow-1">
-                  Presentación íntima en formato acústico e Indie Pop con
-                  arreglos orquestales.
+                <p
+                  class="card-text text-slate-400 text-sm flex-grow-1 leading-relaxed"
+                >
+                  Presentación íntima en formato acústico e Indie Pop
+                  complementada con arreglos orquestales.
                 </p>
                 <div
-                  class="d-flex justify-content-between align-items-center mt-4 pt-3 border-t border-slate-700"
+                  class="d-flex justify-content-between align-items-center mt-4 pt-3 border-t border-slate-700/60"
                 >
-                  <span class="text-sm font-semibold text-slate-300"
+                  <span
+                    class="text-xs font-medium text-slate-300 bg-slate-900/80 px-2.5 py-1 rounded-md border border-slate-700"
                     >Domingo 17 - 19:30 hrs</span
                   >
                   <a
                     href="#tickets"
-                    class="btn btn-sm btn-primary bg-violet-600 border-0 rounded-pill px-3"
+                    class="btn btn-sm btn-primary bg-violet-600 border-0 rounded-full px-4 hover:bg-violet-700 font-medium"
                   >
                     Reservar 🎟️
                   </a>
                 </div>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Paso 5: Formulario Accesible con Validación UI -->
+    <!-- FORMULARIO DE RESERVA CON VALIDACIÓN Y ACCESIBILIDAD -->
     <section id="tickets" class="py-20 bg-slate-950">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <div
-              class="bg-slate-900 p-8 rounded-2xl shadow-2xl border border-slate-800"
+              class="bg-slate-900 p-8 md:p-10 rounded-3xl shadow-2xl border border-slate-800 relative"
             >
-              <h2 class="text-2xl font-bold text-white mb-6 text-center">
-                Reserva tus Entradas
-              </h2>
+              <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">
+                  Reserva tus Entradas
+                </h2>
+                <p class="text-slate-400 text-sm mt-1">
+                  Garantiza tu acceso a la preventa oficial del evento
+                </p>
+              </div>
 
-              <form class="needs-validation" novalidate>
+              <form class="needs-validation" novalidate id="bookingForm">
                 <!-- Campo Nombre -->
                 <div class="mb-4">
                   <label
                     for="nombreComprador"
-                    class="form-label font-medium text-slate-200"
+                    class="form-label font-medium text-slate-200 text-sm"
                   >
                     Nombre Completo
                   </label>
                   <input
                     type="text"
-                    class="form-control bg-slate-800 border-slate-700 text-white focus:border-violet-500"
+                    class="form-control bg-slate-800/90 border-slate-700 text-white focus:bg-slate-800 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 rounded-xl py-2.5"
                     id="nombreComprador"
                     aria-describedby="nombreHelp"
+                    placeholder="Ej. Juan Pérez"
                     required
                   />
-                  <div id="nombreHelp" class="form-text text-slate-400">
-                    Nombre con el que retirarás las pulseras de acceso.
+                  <div
+                    id="nombreHelp"
+                    class="form-text text-slate-400 text-xs mt-1"
+                  >
+                    Nombre con el que retirarás tus accesos el día del evento.
                   </div>
-                  <div class="valid-feedback">¡Correcto!</div>
-                  <div class="invalid-feedback">
+                  <div class="invalid-feedback text-xs">
                     Por favor, escribe tu nombre completo.
                   </div>
                 </div>
 
-                <!-- Campo Correo (Con la clase peer de Tailwind) -->
-                <div class="mb-4 relative">
+                <!-- Campo Correo -->
+                <div class="mb-4">
                   <label
                     for="emailComprador"
-                    class="form-label font-medium text-slate-200"
+                    class="form-label font-medium text-slate-200 text-sm"
                   >
                     Correo Electrónico
                   </label>
                   <input
                     type="email"
-                    class="form-control peer bg-slate-800 border-slate-700 text-white focus:border-violet-500"
+                    class="form-control bg-slate-800/90 border-slate-700 text-white focus:bg-slate-800 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 rounded-xl py-2.5"
                     id="emailComprador"
-                    aria-describedby="emailError"
+                    aria-describedby="emailHelp"
                     placeholder="asistente@evento.com"
                     required
                   />
-                  <div id="emailError" class="invalid-feedback">
-                    Introduce una dirección de correo válida para enviarte tus
+                  <div id="emailHelp" class="invalid-feedback text-xs">
+                    Introduce una dirección de correo válida para el envío de
                     e-tickets.
                   </div>
                 </div>
 
                 <!-- Tipo de Entrada -->
-                <div class="mb-4">
+                <div class="mb-6">
                   <label
                     for="tipoTicket"
-                    class="form-label font-medium text-slate-200"
+                    class="form-label font-medium text-slate-200 text-sm"
                   >
                     Selecciona tu Zonal/Pase
                   </label>
                   <select
-                    class="form-select bg-slate-800 border-slate-700 text-white"
+                    class="form-select bg-slate-800/90 border-slate-700 text-white focus:bg-slate-800 focus:border-violet-500 rounded-xl py-2.5"
                     id="tipoTicket"
                     aria-label="Selecciona zona de ticket"
                     required
@@ -414,15 +446,15 @@
                       Experiencia Ultra VIP + Backstage (S/ 550.00)
                     </option>
                   </select>
-                  <div class="invalid-feedback">
-                    Selecciona una opción válida.
+                  <div class="invalid-feedback text-xs">
+                    Selecciona una zona válida.
                   </div>
                 </div>
 
                 <!-- Botón de Envío -->
                 <button
                   type="submit"
-                  class="w-full btn btn-primary bg-violet-600 border-0 btn-lg font-semibold py-3 rounded-xl shadow-lg hover:bg-violet-700 transition-colors"
+                  class="w-full btn btn-primary bg-violet-600 hover:bg-violet-700 border-0 btn-lg font-bold py-3 rounded-xl shadow-lg transition-all"
                 >
                   Proceder al Pago
                 </button>
@@ -433,29 +465,29 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800">
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 border-t border-slate-800/80">
       <div class="container py-12">
-        <div class="row g-5">
+        <div class="row g-4 justify-content-between">
           <div class="col-lg-5">
             <a
               href="#inicio"
-              class="text-2xl font-bold text-violet-500 text-decoration-none tracking-wider"
+              class="text-2xl font-bold text-violet-400 text-decoration-none tracking-wider"
             >
               ⚡ SoundFest
             </a>
-            <p class="text-slate-400 mt-3 mb-4">
-              La experiencia musical que reúne a los mejores artistas en un solo
-              festival.
+            <p class="text-slate-400 text-sm mt-3 max-w-sm leading-relaxed">
+              La experiencia musical del año que reúne a los artistas más
+              influyentes en una producción de nivel internacional.
             </p>
           </div>
           <div class="col-6 col-lg-3">
             <h3
-              class="text-white text-sm font-bold uppercase tracking-wider mb-4"
+              class="text-white text-xs font-bold uppercase tracking-widest mb-4"
             >
               Navegación
             </h3>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled text-sm">
               <li class="mb-2">
                 <a
                   href="#inicio"
@@ -481,27 +513,93 @@
           </div>
           <div class="col-lg-4">
             <h3
-              class="text-white text-sm font-bold uppercase tracking-wider mb-4"
+              class="text-white text-xs font-bold uppercase tracking-widest mb-4"
             >
-              Contacto
+              Contacto & Ubicación
             </h3>
-            <p class="text-slate-400 mb-1">📍 Lima, Perú</p>
-            <p class="text-slate-400">📧 contacto@soundfest.com</p>
+            <p class="text-slate-400 text-sm mb-1">
+              📍 Estadio Nacional - Lima, Perú
+            </p>
+            <p class="text-slate-400 text-sm">📧 contacto@soundfest.com</p>
           </div>
         </div>
         <div
-          class="border-top border-slate-800 mt-8 pt-6 text-center text-slate-500 text-sm"
+          class="border-t border-slate-800/80 mt-8 pt-6 text-center text-slate-500 text-xs"
         >
-          © 2026 SoundFest - UNCP FIS. Todos los derechos reservados.
+          © 2026 SoundFest - UNCP FIS | Desarrollado por Tocas Anglas & Antezana
+          Villegas.
         </div>
       </div>
     </footer>
 
-    <!-- CDN Oficial de Bootstrap 5.3.3 (JS Bundle) -->
+    <!-- Bootstrap JS (Para componentes de Dropdown e interacción de UI) -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Scripts de Control de Interfaz y Validación -->
+    <script>
+      // 1. Manejo Estable del Menú Hamburguesa en Móvil (Sin rebote ni parpadeo)
+      const menuBtn = document.getElementById("mobileMenuBtn");
+      const menuContent = document.getElementById("navbarFest");
+
+      if (menuBtn && menuContent) {
+        menuBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isHidden = menuContent.classList.contains("hidden");
+
+          if (isHidden) {
+            menuContent.classList.remove("hidden");
+            menuContent.classList.add("flex");
+            menuBtn.setAttribute("aria-expanded", "true");
+          } else {
+            menuContent.classList.add("hidden");
+            menuContent.classList.remove("flex");
+            menuBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        // Ocultar menú automáticamente al hacer clic en un enlace de navegación (en celular)
+        document
+          .querySelectorAll("#navbarFest .nav-link:not(.dropdown-toggle)")
+          .forEach((link) => {
+            link.addEventListener("click", () => {
+              if (window.innerWidth < 1024) {
+                menuContent.classList.add("hidden");
+                menuContent.classList.remove("flex");
+                menuBtn.setAttribute("aria-expanded", "false");
+              }
+            });
+          });
+      }
+
+      // 2. Validación de Formulario en Cliente (Requisito Bootstrap)
+      (() => {
+        "use strict";
+        const forms = document.querySelectorAll(".needs-validation");
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              } else {
+                event.preventDefault();
+                alert(
+                  "¡Reserva completada con éxito! Revisa tu correo electrónico.",
+                );
+              }
+              form.classList.add("was-validated");
+            },
+            false,
+          );
+        });
+      })();
+    </script>
   </body>
 </html>
