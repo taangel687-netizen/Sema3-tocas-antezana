@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SoundFest 2026 - Conciertos, Entradas y Agenda</title>
 
-    <!-- Meta Etiquetas SEO -->
+    <!-- Meta Etiquetas SEO (Paso 1) -->
     <meta
       name="description"
       content="SoundFest 2026: Compra tus tickets en preventa, consulta la agenda de conciertos y conoce a los artistas principales del año."
@@ -27,38 +27,52 @@
 
     <!-- CDN Oficial de Tailwind CSS (Play CDN para desarrollo) -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Estilo de parche para evitar conflictos entre Tailwind y Bootstrap collapse -->
+    <style>
+      .collapse.show {
+        display: block !important;
+      }
+      .collapsing {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.35s ease;
+      }
+    </style>
   </head>
   <body class="bg-slate-950 text-slate-100 antialiased">
-    <!-- Navbar Responsivo Híbrido -->
+    <!-- Paso 2: Navbar Responsivo Híbrido -->
     <header class="sticky-top">
       <nav
-        class="navbar navbar-expand-lg navbar-dark bg-dark/80 backdrop-blur-md shadow-lg py-3"
+        class="navbar navbar-expand-lg navbar-dark bg-slate-900/90 backdrop-blur-md shadow-lg py-3"
       >
         <div class="container">
           <!-- Logo / Marca -->
           <a
             class="navbar-brand text-2xl font-bold text-violet-500 tracking-wider flex items-center gap-2"
-            href="#"
+            href="#inicio"
           >
             ⚡ SoundFest
           </a>
 
-          <!-- Botón Hamburguesa Móvil (JS NATIVO de Bootstrap) -->
+          <!-- Botón Hamburguesa Móvil -->
           <button
-            class="navbar-toggler border-0 focus:outline-none"
+            class="navbar-toggler border-0 focus:outline-none p-2"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarFest"
             aria-controls="navbarFest"
             aria-expanded="false"
-            aria-label="Toggle navigation"
+            aria-label="Navegación de palanca"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <!-- Navegación -->
           <div class="collapse navbar-collapse" id="navbarFest">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 font-medium ms-lg-4">
+            <ul
+              class="navbar-nav me-auto mb-2 mb-lg-0 font-medium ms-lg-4 gap-1"
+            >
               <li class="nav-item">
                 <a
                   class="nav-link active text-violet-400"
@@ -91,18 +105,24 @@
                   aria-labelledby="genDropdown"
                 >
                   <li>
-                    <a class="dropdown-item hover:bg-violet-600" href="#"
+                    <a
+                      class="dropdown-item hover:bg-violet-600 text-slate-200"
+                      href="#"
                       >Rock & Indie</a
                     >
                   </li>
                   <li>
-                    <a class="dropdown-item hover:bg-violet-600" href="#"
+                    <a
+                      class="dropdown-item hover:bg-violet-600 text-slate-200"
+                      href="#"
                       >Electrónica & EDM</a
                     >
                   </li>
                   <li><hr class="dropdown-divider border-slate-700" /></li>
                   <li>
-                    <a class="dropdown-item hover:bg-violet-600" href="#"
+                    <a
+                      class="dropdown-item hover:bg-violet-600 text-slate-200"
+                      href="#"
                       >Urbano & Trap</a
                     >
                   </li>
@@ -118,10 +138,10 @@
             </ul>
 
             <!-- Badges de Estado / Acciones -->
-            <div class="d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center gap-3 my-2 my-lg-0">
               <button
                 type="button"
-                class="btn btn-outline-light position-relative rounded-full px-4 border-violet-500 text-violet-300"
+                class="btn btn-outline-light position-relative rounded-full px-4 border-violet-500 text-violet-300 hover:bg-violet-900/30"
               >
                 🎟️ Mis Entradas
                 <span
@@ -137,7 +157,7 @@
       </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Paso 3: Hero Section -->
     <section
       id="inicio"
       class="bg-gradient-to-r from-slate-950 via-slate-900 to-violet-950 py-24 relative overflow-hidden"
@@ -169,7 +189,7 @@
               </a>
               <a
                 href="#artistas"
-                class="btn btn-outline-light btn-lg rounded-pill px-4 border-slate-700 text-slate-300"
+                class="btn btn-outline-light btn-lg rounded-pill px-4 border-slate-700 text-slate-300 hover:bg-slate-800"
               >
                 Ver Lineup
               </a>
@@ -179,7 +199,7 @@
       </div>
     </section>
 
-    <!-- Sección Lineup / Artistas (Grid de Tarjetas) -->
+    <!-- Paso 4: Grid de Tarjetas (Sistema de 12 Columnas) -->
     <section id="artistas" class="py-20 bg-slate-900">
       <div class="container">
         <div class="text-center mb-16">
@@ -191,17 +211,16 @@
           </p>
         </div>
 
-        <!-- Grid de 12 columnas (3 tarjetas) -->
         <div class="row g-4">
           <!-- Tarjeta 1 -->
           <div class="col-md-4">
             <div
-              class="card h-100 bg-slate-800 border-slate-700 shadow-2xl rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300"
+              class="card h-100 bg-slate-800 border-slate-700 shadow-2xl rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300"
             >
               <img
                 src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80"
                 class="card-img-top object-cover h-56"
-                alt="Concierto Rock"
+                alt="Escenario principal con banda Electric Neon"
               />
               <div class="card-body d-flex flex-column p-6">
                 <span
@@ -221,11 +240,12 @@
                   <span class="text-sm font-semibold text-slate-300"
                     >Viernes 15 - 22:00 hrs</span
                   >
-                  <button
+                  <a
+                    href="#tickets"
                     class="btn btn-sm btn-primary bg-violet-600 border-0 rounded-pill px-3"
                   >
                     Reservar 🎟️
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -234,12 +254,12 @@
           <!-- Tarjeta 2 -->
           <div class="col-md-4">
             <div
-              class="card h-100 bg-slate-800 border-slate-700 shadow-2xl rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300"
+              class="card h-100 bg-slate-800 border-slate-700 shadow-2xl rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300"
             >
               <img
                 src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80"
                 class="card-img-top object-cover h-56"
-                alt="DJ Set"
+                alt="DJ Pulse en escenario Beat"
               />
               <div class="card-body d-flex flex-column p-6">
                 <span
@@ -259,11 +279,12 @@
                   <span class="text-sm font-semibold text-slate-300"
                     >Sábado 16 - 00:00 hrs</span
                   >
-                  <button
+                  <a
+                    href="#tickets"
                     class="btn btn-sm btn-primary bg-violet-600 border-0 rounded-pill px-3"
                   >
                     Reservar 🎟️
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -272,12 +293,12 @@
           <!-- Tarjeta 3 -->
           <div class="col-md-4">
             <div
-              class="card h-100 bg-slate-800 border-slate-700 shadow-2xl rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300"
+              class="card h-100 bg-slate-800 border-slate-700 shadow-2xl rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300"
             >
               <img
                 src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
                 class="card-img-top object-cover h-56"
-                alt="Cantante Pop"
+                alt="Luna Sol cantando en escenario acústico"
               />
               <div class="card-body d-flex flex-column p-6">
                 <span
@@ -297,11 +318,12 @@
                   <span class="text-sm font-semibold text-slate-300"
                     >Domingo 17 - 19:30 hrs</span
                   >
-                  <button
+                  <a
+                    href="#tickets"
                     class="btn btn-sm btn-primary bg-violet-600 border-0 rounded-pill px-3"
                   >
                     Reservar 🎟️
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -310,7 +332,7 @@
       </div>
     </section>
 
-    <!-- Sección Compra de Tickets / Formulario -->
+    <!-- Paso 5: Formulario Accesible con Validación UI -->
     <section id="tickets" class="py-20 bg-slate-950">
       <div class="container">
         <div class="row justify-content-center">
@@ -347,7 +369,7 @@
                   </div>
                 </div>
 
-                <!-- Campo Correo (Uso de PEER) -->
+                <!-- Campo Correo (Con la clase peer de Tailwind) -->
                 <div class="mb-4 relative">
                   <label
                     for="emailComprador"
@@ -392,6 +414,9 @@
                       Experiencia Ultra VIP + Backstage (S/ 550.00)
                     </option>
                   </select>
+                  <div class="invalid-feedback">
+                    Selecciona una opción válida.
+                  </div>
                 </div>
 
                 <!-- Botón de Envío -->
@@ -408,11 +433,10 @@
       </div>
     </section>
 
-    <!-- Footer Profesional -->
+    <!-- Footer -->
     <footer class="bg-slate-900 border-t border-slate-800">
       <div class="container py-12">
         <div class="row g-5">
-          <!-- Marca -->
           <div class="col-lg-5">
             <a
               href="#inicio"
@@ -421,37 +445,15 @@
               ⚡ SoundFest
             </a>
             <p class="text-slate-400 mt-3 mb-4">
-              La experiencia musical que reúne a los mejores artistas, sonidos
-              inmersivos y momentos inolvidables en un solo festival.
+              La experiencia musical que reúne a los mejores artistas en un solo
+              festival.
             </p>
-            <div class="d-flex gap-3">
-              <a
-                href="#"
-                class="text-slate-400 text-decoration-none hover:text-violet-400"
-                aria-label="Instagram"
-                >Instagram</a
-              >
-              <a
-                href="#"
-                class="text-slate-400 text-decoration-none hover:text-violet-400"
-                aria-label="Facebook"
-                >Facebook</a
-              >
-              <a
-                href="#"
-                class="text-slate-400 text-decoration-none hover:text-violet-400"
-                aria-label="TikTok"
-                >TikTok</a
-              >
-            </div>
           </div>
-
-          <!-- Navegación -->
-          <div class="col-6 col-lg-2">
+          <div class="col-6 col-lg-3">
             <h3
               class="text-white text-sm font-bold uppercase tracking-wider mb-4"
             >
-              Festival
+              Navegación
             </h3>
             <ul class="list-unstyled">
               <li class="mb-2">
@@ -477,52 +479,20 @@
               </li>
             </ul>
           </div>
-
-          <!-- Información -->
-          <div class="col-6 col-lg-2">
-            <h3
-              class="text-white text-sm font-bold uppercase tracking-wider mb-4"
-            >
-              Información
-            </h3>
-            <ul class="list-unstyled">
-              <li class="mb-2">
-                <a
-                  href="#"
-                  class="text-slate-400 text-decoration-none hover:text-violet-400"
-                  >Preguntas frecuentes</a
-                >
-              </li>
-              <li class="mb-2">
-                <a
-                  href="#"
-                  class="text-slate-400 text-decoration-none hover:text-violet-400"
-                  >Términos y condiciones</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Contacto -->
-          <div class="col-lg-3">
+          <div class="col-lg-4">
             <h3
               class="text-white text-sm font-bold uppercase tracking-wider mb-4"
             >
               Contacto
             </h3>
-            <ul class="list-unstyled text-slate-400">
-              <li class="mb-3">📍 Lima, Perú</li>
-              <li class="mb-3">📧 contacto@soundfest.com</li>
-            </ul>
+            <p class="text-slate-400 mb-1">📍 Lima, Perú</p>
+            <p class="text-slate-400">📧 contacto@soundfest.com</p>
           </div>
         </div>
-
         <div
-          class="border-top border-slate-800 mt-10 pt-6 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3"
+          class="border-top border-slate-800 mt-8 pt-6 text-center text-slate-500 text-sm"
         >
-          <p class="text-slate-500 text-sm mb-0">
-            © 2026 SoundFest. Todos los derechos reservados.
-          </p>
+          © 2026 SoundFest - UNCP FIS. Todos los derechos reservados.
         </div>
       </div>
     </footer>
